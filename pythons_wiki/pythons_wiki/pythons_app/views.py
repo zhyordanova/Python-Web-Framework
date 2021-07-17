@@ -4,20 +4,28 @@ from .forms import PythonCreateForm
 from .models import Python
 
 
-def index(req):
+def index(request):
     pythons = Python.objects.all()
-    return render(req, 'index.html', {'pythons': pythons})
+
+    context = {
+        'pythons': pythons,
+        'form': PythonCreateForm(),
+    }
+    return render(request, 'index.html', context)
 
 
-def create(req):
-    if req.method == 'GET':
+def create(request):
+    if request.method == 'GET':
         form = PythonCreateForm()
-        return render(req, 'create.html', {'form': form})
+
+        context = {
+            'form': form,
+        }
+        return render(request, 'create.html', context)
+
     else:
-        data = req.POST
-        form = PythonCreateForm(data)
-        print(form)
+        form = PythonCreateForm(request.POST, request.FILES)
         if form.is_valid():
-            python = form.save()
-            python.save()
+            form.save()
             return redirect('index')
+
