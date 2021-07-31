@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Python
+from pythons_wiki.pythons_app.models import Python
 
 
 class PythonCreateForm(forms.ModelForm):

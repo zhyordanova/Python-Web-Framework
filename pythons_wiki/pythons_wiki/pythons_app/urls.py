@@ -1,10 +1,10 @@
 from django.urls import path
 
-from . import views
+from pythons_wiki.pythons_app.views import IndexView, PythonCreateView
 
 urlpatterns = [
-    path('', views.index, name="index"),
-    path('create/', views.create, name="create"),
-    path('sign-in/', views.sign_in, name='sign in'),
-    path('sign-out/', views.sign_out, name='sign out'),
+    # path('', index, name="index"),
+    path('', IndexView.as_view(), name="index"),
+    # path('create/', create, name="create"),
+    path('create/', PythonCreateView.as_view(), name="create"),
 ]
