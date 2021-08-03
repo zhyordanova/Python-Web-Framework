@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from books.books_api.models import BookModel
+from books.books_api.models import BooksModel
 
 
 class BookSerializers(serializers.ModelSerializer):
@@ -12,5 +12,5 @@ class BookSerializers(serializers.ModelSerializer):
         return data
 
     class Meta:
-        model = BookModel
+        model = BooksModel
         fields = '__all__'
