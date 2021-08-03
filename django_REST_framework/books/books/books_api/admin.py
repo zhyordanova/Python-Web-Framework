@@ -1,5 +1,5 @@
 from django.contrib import admin
 
-from books.books_api.models import BooksModel
+from books.books_api.models import BookModel
 
-admin.site.register(BooksModel)
+admin.site.register(BookModel)

@@ -3,13 +3,13 @@ from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework import status
 
-from books.books_api.models import BooksModel
+from books.books_api.models import BookModel
 from books.books_api.serializers import BookSerializers
 
 
 class BookListCreate(APIView):
     def get(self, request):
-        books = BooksModel.objects.all()
+        books = BookModel.objects.all()
         serializer = BookSerializers(books, many=True)
         return Response(serializer.data)
 
@@ -23,7 +23,7 @@ class BookListCreate(APIView):
 
 class BookGetUpdateDelete(APIView):
     def put(self, request, book_id):
-        book = get_object_or_404(BooksModel, pk=book_id)
+        book = get_object_or_404(BookModel, pk=book_id)
         serializer = BookSerializers(book, data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -32,7 +32,7 @@ class BookGetUpdateDelete(APIView):
 
     def get(self, request, book_id):
         try:
-            book = BooksModel.objects.get(id=book_id)
+            book = BookModel.objects.get(id=book_id)
             book_serializer = BookSerializers(book)
             return Response(book_serializer.data, status=status.HTTP_200_OK)
 
@@ -41,7 +41,7 @@ class BookGetUpdateDelete(APIView):
 
     def delete(self, request, book_id):
         try:
-            book = BooksModel.objects.get(id=book_id)
+            book = BookModel.objects.get(id=book_id)
             book.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
 
