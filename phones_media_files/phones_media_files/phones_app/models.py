@@ -17,4 +17,7 @@ class PhoneImage(models.Model):
     is_selected = models.BooleanField(
         default=False,
     )
-    phone = models.ForeignKey(Phone, on_delete=models.CASCADE)
+    phone = models.ForeignKey(
+        Phone,
+        on_delete=models.CASCADE
+    )
